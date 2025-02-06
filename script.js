@@ -1,3 +1,12 @@
+//Global variables 
+let rock = document.querySelector("#rock");
+let paper = document.querySelector("#paper");
+let scissor = document.querySelector("#scissor");
+
+rock.addEventListener('click', playGame);
+paper.addEventListener('click', playGame);
+scissor.addEventListener('click', playGame);
+
 function playGame()
 {
     let humanScore = 0;
@@ -23,12 +32,10 @@ function playGame()
         return;
     }
 
-    for(let i = 0; i < 5; i++)
-    {
-        let computerSelection = getComputerChoice();
-        let humanSelection = getHumanChoice();
-        playRound(humanSelection, computerSelection);
-    }
+    
+    let computerSelection = getComputerChoice();
+    let humanSelection = getHumanChoice();
+    playRound(humanSelection, computerSelection);
 
     if(humanScore > computerScore)
         return `Human wins! ${humanScore} - ${computerScore}`;
@@ -51,7 +58,7 @@ function getComputerChoice()
 
 function getHumanChoice()
 {
-    let choice = prompt("Pick one: Rock, Paper, Scissors");
+    //let choice = prompt("Pick one: Rock, Paper, Scissors");
     choice = choice.charAt(0).toUpperCase() + choice.substring(1).toLowerCase()
 
     if(choice == "Rock" || choice == "Paper" || choice == "Scissors")
@@ -63,3 +70,5 @@ function getHumanChoice()
 
 // Start the game
 alert(playGame());
+
+
