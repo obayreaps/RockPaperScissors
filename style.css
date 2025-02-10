@@ -5,3 +5,24 @@
     font-family:'Times New Roman', Times, serif;
 }
 
+body {
+    background-color:antiquewhite
+}
+
+.heading{
+    font-size: 40px;
+    text-align: center;
+    padding-top: 200px;
+}
+
+.main-container{
+    display: flex;
+    justify-content: space-evenly;
+    flex: 1;
+    font-size: 20px;
+}
+
+.main-container button{
+    width: 200px;
+}
+
