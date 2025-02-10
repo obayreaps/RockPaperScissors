@@ -1,50 +1,40 @@
-//Global variables 
-let rock = document.querySelector("#rock");
-let paper = document.querySelector("#paper");
-let scissor = document.querySelector("#scissor");
+//Global Variables
+let humanScore = 0;
+let computerScore = 0;
 
-rock.addEventListener('click', playGame);
-paper.addEventListener('click', playGame);
-scissor.addEventListener('click', playGame);
-
-function playGame()
+function playRound(human, computer)
 {
-    let humanScore = 0;
-    let computerScore = 0;
-    function playRound(human, computer)
+    const result = document.querySelector("#result-statement");
+    const scores = document.querySelector("#scores");
+    let resultText;
+
+    if(human == "Rock" && computer == "Scissors" ||
+        resultText == "Paper" && computer == "Rock" || 
+        human == "Scissors" && computer == "Paper")
     {
-        if(human == "Rock" && computer == "Scissors" ||
-            human == "Paper" && computer == "Rock" || 
-            human == "Scissors" && computer == "Paper")
-        {
-            humanScore++;
-            alert(`Human wins! ${human} beats ${computer}`);
-        } 
-        else if (computer == "Rock" && human == "Scissors" || 
-            computer == "Paper" && human == "Rock" ||
-            computer == "Scissors" && human == "Paper")
-        {
-            computerScore++;
-            alert(`Computer wins! ${computer} beats ${human}`);
-        }
-        else
-            alert("Tie!")
-        return;
+        humanScore++;
+        resultText = `Human wins! ${human} beats ${computer}`;
+    } 
+    else if (computer == "Rock" && human == "Scissors" || 
+        computer == "Paper" && human == "Rock" ||
+        computer == "Scissors" && human == "Paper")
+    {
+        computerScore++;
+        resultText = `Computer wins! ${computer} beats ${human}`;
     }
-
-    
-    let computerSelection = getComputerChoice();
-    let humanSelection = getHumanChoice();
-    playRound(humanSelection, computerSelection);
-
-    if(humanScore > computerScore)
-        return `Human wins! ${humanScore} - ${computerScore}`;
-    else if(humanScore < computerScore)
-        return `Computer wins! ${computerScore} - ${humanScore}`;
     else
-        return `Nobody wins! ${humanScore} - ${computerScore}`
+        resultText = `Tie`;
+
+    result.textContent = resultText;
+    scores.textContent = `Human: ${humanScore} - Computer: ${computerScore}`;
+
+    if(humanScore == 5)
+        alert(`Human wins! ${humanScore} - ${computerScore}`);
+    else if(computerScore == 5)
+        alert(`Computer wins! ${computerScore} - ${humanScore}`);
 }
 
+//Generates a random and returns string
 function getComputerChoice()
 {
     let temp = Math.random();
@@ -56,19 +46,39 @@ function getComputerChoice()
         return "Scissors";
 }
 
-function getHumanChoice()
+function playGame()
 {
-    //let choice = prompt("Pick one: Rock, Paper, Scissors");
-    choice = choice.charAt(0).toUpperCase() + choice.substring(1).toLowerCase()
+    //const ensures the var itself always refers to same button obj
+    const rock = document.querySelector("#rock");
+    const paper = document.querySelector("#paper");
+    const scissor = document.querySelector("#scissor");
 
-    if(choice == "Rock" || choice == "Paper" || choice == "Scissors")
-        return choice;
-    else    
-        alert("Invalid");
+    rock.addEventListener("click", () => {
+        playRound("Rock", getComputerChoice());
+    });
+
+    paper.addEventListener("click", () => {
+        playRound("Paper", getComputerChoice());
+    });
+
+    scissor.addEventListener("click", () => {
+        playRound("Scissors", getComputerChoice());
+    });
+
+    //Reset game
+    const reset = document.querySelector("#reset");
+    const result = document.querySelector("#result-statement");
+    const scores = document.querySelector("#scores");
+
+    reset.addEventListener("click", ()=> {
+        humanScore = 0;
+        computerScore = 0;
+        result.textContent = "Game Reset";
+        scores.textContent = "";
+    });
 }
 
+playGame();
 
-// Start the game
-alert(playGame());
 
 
