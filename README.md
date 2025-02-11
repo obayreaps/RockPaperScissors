@@ -1,5 +1,5 @@
-# RockPaperScissors_Project
+# RockPaperScissors
 
-Implement the rock paper scissors program using html and javascript. 
+Complete the development of Rock, Paper, Scissors!
 
-Still a work in progress before deploying the link to the page. 
+Launch the game usig this link: [obayreaps.github.io/RockPaperScissors](https://obayreaps.github.io/RockPaperScissors/)
