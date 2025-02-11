@@ -30,9 +30,11 @@ function playRound(humanChoice, computerChoice)
     else
         resultText = `Tie`;
 
+    // Update Match Results
     result.textContent = resultText;
     scores.textContent = `🔵 ${humanScore} - 🤖 ${computerScore}`;
 
+    // Determine the winner of the match
     if(humanScore == 5)
         alert(`Human wins! ${humanScore} - ${computerScore}`);
     else if(computerScore == 5)
@@ -118,8 +120,6 @@ function playGame()
     const rock = document.querySelector("#rock");
     const paper = document.querySelector("#paper");
     const scissor = document.querySelector("#scissor");
-
-    //Reset game function
 
     rock.addEventListener("mousedown", () => {
         playRound("Rock", getComputerChoice());
