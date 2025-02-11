@@ -35,10 +35,10 @@ function playRound(humanChoice, computerChoice)
     scores.textContent = `🔵 ${humanScore} - 🤖 ${computerScore}`;
 
     // Determine the winner of the match
-    if(humanScore == 5)
-        alert(`Human wins! ${humanScore} - ${computerScore}`);
-    else if(computerScore == 5)
-        alert(`Computer wins! ${computerScore} - ${humanScore}`);
+    if(humanScore >= 3)
+        alert(`Human wins!`);
+    else if(computerScore >= 3)
+        alert(`Computer Wins!`);
 }
 
 //Update prompt for human and computer
