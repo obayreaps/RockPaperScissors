@@ -31,22 +31,35 @@ body,
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
+    margin: 150px 0px;
+    gap: 200px;
+}
+
+#humanSide{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 100px;
 }
 
-.main-container button {
+#computerSide{
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Removes background and border of button-img */
+.main-container button {
     background-color: blanchedalmond;
     border: 0;
 }
 
-.main-container button img{
+.main-container button img,
+#computerSide img{
     background-color: blanchedalmond;
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    mix-blend-mode: darken;
 }
 
 /* Results section */
@@ -65,5 +78,6 @@ body,
 #reset-container button {
     height: 50px;
     width: 100px;
-    font-size: 30px;
+    border-radius: 1em;
+    font-size: 25px;
 }

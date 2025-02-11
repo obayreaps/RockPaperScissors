@@ -26,7 +26,7 @@ function playRound(human, computer)
         resultText = `Tie`;
 
     result.textContent = resultText;
-    scores.textContent = `Human: ${humanScore} - Computer: ${computerScore}`;
+    scores.textContent = `🔵 ${humanScore} - 🤖 ${computerScore}`;
 
     if(humanScore == 5)
         alert(`Human wins! ${humanScore} - ${computerScore}`);
@@ -34,16 +34,38 @@ function playRound(human, computer)
         alert(`Computer wins! ${computerScore} - ${humanScore}`);
 }
 
+//Changes Computer Choice Image
+function changeComputerImage(choice)
+{
+    let compImg = document.getElementById("computerChoiceImg");
+
+    if(choice == "Rock")
+        compImg.src = 'img/rock STICKER.gif';
+    else if(choice == "Paper")
+        compImg.src = 'img/Frustrated Loop Sticker by Jef Caine.gif';
+    else if(choice == "Scissors") 
+        compImg.src = 'img/Art Cutting Sticker by Kia Creates.gif';
+}
+
 //Generates a random and returns string
 function getComputerChoice()
 {
     let temp = Math.random();
     if(temp < 0.33)
+    {
+        changeComputerImage("Rock");
         return "Rock";
+    }
     else if(temp >= 0.33 && temp < 0.66)
+    {
+        changeComputerImage("Paper");
         return "Paper";
+    }
     else if(temp >= 0.66)
+    {
+        changeComputerImage("Scissors");
         return "Scissors";
+    } 
 }
 
 function playGame()
@@ -53,7 +75,7 @@ function playGame()
     const result = document.querySelector("#result-statement");
     const scores = document.querySelector("#scores");
 
-    reset.addEventListener("click", ()=> {
+    reset.addEventListener("mousedown", ()=> {
         humanScore = 0;
         computerScore = 0;
         result.textContent = "Game Reset";
@@ -68,15 +90,15 @@ function playGame()
 
     //Reset game function
 
-    rock.addEventListener("click", () => {
+    rock.addEventListener("mousedown", () => {
         playRound("Rock", getComputerChoice());
     });
 
-    paper.addEventListener("click", () => {
+    paper.addEventListener("mousedown", () => {
         playRound("Paper", getComputerChoice());
     });
 
-    scissor.addEventListener("click", () => {
+    scissor.addEventListener("mousedown", () => {
         playRound("Scissors", getComputerChoice());
     });
 }
