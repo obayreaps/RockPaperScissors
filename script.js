@@ -2,25 +2,30 @@
 let humanScore = 0;
 let computerScore = 0;
 
-function playRound(human, computer)
+function playRound(humanChoice, computerChoice)
 {
     const result = document.querySelector("#result-statement");
     const scores = document.querySelector("#scores");
     let resultText;
 
-    if(human == "Rock" && computer == "Scissors" ||
-        resultText == "Paper" && computer == "Rock" || 
-        human == "Scissors" && computer == "Paper")
+    // Update human choice image and prompt
+    updateChoiceImage("human", humanChoice);
+    updatePrompt("human", humanChoice);
+
+    //Determine the outcome of match
+    if(humanChoice == "Rock" && computerChoice == "Scissors" ||
+        humanChoice == "Paper" && computerChoice == "Rock" || 
+        humanChoice == "Scissors" && computerChoice == "Paper")
     {
         ++humanScore;
-        resultText = `Human wins! ${human} beats ${computer}`;
+        resultText = `Human wins!`;
     } 
-    else if (computer == "Rock" && human == "Scissors" || 
-        computer == "Paper" && human == "Rock" ||
-        computer == "Scissors" && human == "Paper")
+    else if (computerChoice == "Rock" && humanChoice == "Scissors" || 
+        computerChoice == "Paper" && humanChoice == "Rock" ||
+        computerChoice == "Scissors" && humanChoice == "Paper")
     {
         ++computerScore;
-        resultText = `Computer wins! ${computer} beats ${human}`;
+        resultText = `Computer wins!`;
     }
     else
         resultText = `Tie`;
@@ -34,17 +39,27 @@ function playRound(human, computer)
         alert(`Computer wins! ${computerScore} - ${humanScore}`);
 }
 
-//Changes Computer Choice Image
-function changeComputerImage(choice)
+//Update prompt for human and computer
+function updatePrompt(who, choice)
 {
-    let compImg = document.getElementById("computerChoiceImg");
+    let parameter = `#${who}ChoicePrompt`; //Select correct parameter to update human or computer
+    const prompt = document.querySelector(parameter);
+    newWho = who[0].toUpperCase() + who.slice(1); //Capatilize the first char
+    prompt.textContent = `${newWho} chooses ${choice}`;
+}
+
+//Update Human and Computer Choice Images
+function updateChoiceImage(who, choice)
+{
+    let parameter = `#${who}ChoiceImg`; //Select correct parameter to update human or computer
+    const newImg = document.querySelector(parameter);
 
     if(choice == "Rock")
-        compImg.src = 'img/rock STICKER.gif';
+        newImg.src = 'img/rock STICKER.gif';
     else if(choice == "Paper")
-        compImg.src = 'img/Frustrated Loop Sticker by Jef Caine.gif';
+        newImg.src = 'img/Frustrated Loop Sticker by Jef Caine.gif';
     else if(choice == "Scissors") 
-        compImg.src = 'img/Art Cutting Sticker by Kia Creates.gif';
+        newImg.src = 'img/Art Cutting Sticker by Kia Creates.gif';
 }
 
 //Generates a random and returns string
@@ -53,33 +68,49 @@ function getComputerChoice()
     let temp = Math.random();
     if(temp < 0.33)
     {
-        changeComputerImage("Rock");
+        updateChoiceImage("computer", "Rock");
+        updatePrompt("computer", "Rock");
         return "Rock";
     }
     else if(temp >= 0.33 && temp < 0.66)
     {
-        changeComputerImage("Paper");
+        updateChoiceImage("computer", "Paper");
+        updatePrompt("computer", "Rock");
         return "Paper";
     }
     else if(temp >= 0.66)
     {
-        changeComputerImage("Scissors");
+        updateChoiceImage("computer", "Scissors");
+        updatePrompt("computer", "Rock");
         return "Scissors";
     } 
 }
 
-function playGame()
+function resetGame()
 {
-    //Reset the game
-    const reset = document.querySelector("#reset");
     const result = document.querySelector("#result-statement");
     const scores = document.querySelector("#scores");
+    const humanImg = document.querySelector("#humanChoiceImg");
+    const compImg = document.querySelector("#computerChoiceImg");
+    const humanPrompt = document.querySelector("#humanChoicePrompt");
+    const compPrompt = document.querySelector("#computerChoicePrompt");
 
+    humanScore = 0;
+    computerScore = 0;
+    result.textContent = "Play a best-of-5 match against the computer!";
+    scores.textContent = "🔵 0 - 🤖 0";
+    humanImg.src = "";
+    compImg.src = "";
+    humanPrompt.textContent = "";
+    compPrompt.textContent = "";
+}
+
+function playGame()
+{
+    //Resets the game if user clicks the reset button
+    const reset = document.querySelector("#reset");
     reset.addEventListener("mousedown", ()=> {
-        humanScore = 0;
-        computerScore = 0;
-        result.textContent = "Game Reset";
-        scores.textContent = "";
+        resetGame();
     });
 
     //Play actual game

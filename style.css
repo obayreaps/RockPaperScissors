@@ -1,83 +1,95 @@
-* {
+*{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: 'Times New Roman', Times, serif;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 body,
-.main-container,
-.result-box,
-#reset-container
-{
+.result-section,
+.bottom-section{
     display: flex;
     flex-direction: column;
     flex: 1;
-    background-color:blanchedalmond
+    background-color: rgb(245, 198, 127);
 }
 
-/* Title */
-.heading{
+img {
+    max-height: 200px;
+    max-width: 200px;
+}
+
+/* Header section */
+.heading {
+    margin: 100px 50px 25px;
+    font-size: 75px;
+    font-weight: bold;
     text-align: center;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-    font-size: 70px;
-    margin-top: 50px;
 }
 
-/* Buttons section */
+/* Display Result section */
+.result-section {
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+#result-statement, 
+#scores {
+    font-size: 30px;
+}
+
+/* Main section */
 .main-container{
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 150px 0px;
-    gap: 200px;
-}
-
-#humanSide{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 100px;
-}
-
-#computerSide{
-    display: flex;
+    gap: 120px;
     justify-content: center;
-    align-items: center;
 }
 
-/* Removes background and border of button-img */
-.main-container button {
-    background-color: blanchedalmond;
-    border: 0;
-}
-
-.main-container button img,
-#computerSide img{
-    background-color: blanchedalmond;
+.humanSide, .computerSide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 200px;
     height: 200px;
+}
+
+.humanSide p,
+.computerSide p{
+    padding-top: 25px;
+    font-size: 18px;
+    font-weight: 300;
+    width: 300px;
+}
+
+/* Bottom Section (User buttons) */
+.bottom-section {
+    align-items: center;
+    margin-top: 100px;
+}
+
+#button-Container {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+#button-Container button {
+    background-color: rgb(245, 198, 127);
+    border: 0px;
+}
+
+#button-Container button img {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
+    background-color: rgb(255, 222, 171);
+    border: 1px solid rgba(112, 112, 112, 0.481);
 }
 
-/* Results section */
-.result-box{
-    font-size: 40px;
-    margin: 50px;
-}
-
-/* Reset btn section */
-#reset-container{
-    justify-content: center;
-    margin: auto;
-    width: 100px;
-}
-
-#reset-container button {
-    height: 50px;
-    width: 100px;
-    border-radius: 1em;
-    font-size: 25px;
+#reset-container button{
+    width:50px;
+    height: 20px;
+    background-color: blanchedalmond;
+    border: 10em;
+    border: 1px solid black;
+    margin-top: 20px;
 }
