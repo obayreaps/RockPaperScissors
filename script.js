@@ -12,14 +12,14 @@ function playRound(human, computer)
         resultText == "Paper" && computer == "Rock" || 
         human == "Scissors" && computer == "Paper")
     {
-        humanScore++;
+        ++humanScore;
         resultText = `Human wins! ${human} beats ${computer}`;
     } 
     else if (computer == "Rock" && human == "Scissors" || 
         computer == "Paper" && human == "Rock" ||
         computer == "Scissors" && human == "Paper")
     {
-        computerScore++;
+        ++computerScore;
         resultText = `Computer wins! ${computer} beats ${human}`;
     }
     else
@@ -48,10 +48,25 @@ function getComputerChoice()
 
 function playGame()
 {
+    //Reset the game
+    const reset = document.querySelector("#reset");
+    const result = document.querySelector("#result-statement");
+    const scores = document.querySelector("#scores");
+
+    reset.addEventListener("click", ()=> {
+        humanScore = 0;
+        computerScore = 0;
+        result.textContent = "Game Reset";
+        scores.textContent = "";
+    });
+
+    //Play actual game
     //const ensures the var itself always refers to same button obj
     const rock = document.querySelector("#rock");
     const paper = document.querySelector("#paper");
     const scissor = document.querySelector("#scissor");
+
+    //Reset game function
 
     rock.addEventListener("click", () => {
         playRound("Rock", getComputerChoice());
@@ -63,18 +78,6 @@ function playGame()
 
     scissor.addEventListener("click", () => {
         playRound("Scissors", getComputerChoice());
-    });
-
-    //Reset game
-    const reset = document.querySelector("#reset");
-    const result = document.querySelector("#result-statement");
-    const scores = document.querySelector("#scores");
-
-    reset.addEventListener("click", ()=> {
-        humanScore = 0;
-        computerScore = 0;
-        result.textContent = "Game Reset";
-        scores.textContent = "";
     });
 }
 
