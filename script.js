@@ -99,7 +99,7 @@ function resetGame()
 
     humanScore = 0;
     computerScore = 0;
-    result.textContent = "Play a best-of-5 match against the computer!";
+    result.textContent = "Play a best-of-3 match against the computer!";
     scores.textContent = "🔵 0 - 🤖 0";
     humanImg.src = "";
     compImg.src = "";
